@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import firebase from 'firebase';
 import Input from './Input';
+import MessagesList from './MessagesList';
 
 const firebaseConfig = {
     apiKey: "AIzaSyAKMkPuRqTOLjj-w8f3t4z4NQk07QYYx6A",
@@ -19,17 +20,6 @@ if(!firebase.apps.length){
 
 export const ChatRoom = () => {
     const [mensaje, setMensaje] = useState('');
-    const [mensajes, setMensajes] = useState([]);
-    useEffect(() => {
-        firebase.database().ref('/messages').on('value', snapshot=>{
-            const currentMessages = snapshot.val();
-            console.log(currentMessages)
-            if(currentMessages){
-                setMensajes(currentMessages);
-            };
-        });
-    });
-
     const handleChange = ({target})=>{
         setMensaje(target.value);
     };
@@ -42,21 +32,11 @@ export const ChatRoom = () => {
         firebase.database().ref(`/messages/${newMessage.id}`).set(newMessage);
         setMensaje('');
     };
-    const renderMessages = ()=>{
-        if(mensajes.length == 0)return;
-        return mensajes.map((msj, id)=>{
-            return (
-                <li key={msj.id} className="list-group-item list-group-item-action">
-                    {msj.texto}
-                </li>
-            );
-        });
-    };
     return (
         <div className="card">
             <div className="card-body">
                 <ul>
-                    {renderMessages()}
+                    <MessagesList></MessagesList>
                 </ul>
             </div>
             <div className="card-footer">
