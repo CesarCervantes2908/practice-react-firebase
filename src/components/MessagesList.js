@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import React, {useEffect, useState} from 'react';
 
-function MessagesList() {
+function MessagesList({firebase}) {
     const [mensajes, setMensajes] = useState([]);
     useEffect(() => {
         firebase.database().ref('/messages').on('value', snapshot=>{
