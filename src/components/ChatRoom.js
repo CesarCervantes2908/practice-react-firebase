@@ -4,12 +4,7 @@ import MessagesList from './MessagesList';
 import NewMessageControl from './NewMessageControl';
 
 const firebaseConfig = {
-    apiKey: "AIzaSyAKMkPuRqTOLjj-w8f3t4z4NQk07QYYx6A",
-    authDomain: "practice-react-firebase-3e7f1.firebaseapp.com",
-    projectId: "practice-react-firebase-3e7f1",
-    storageBucket: "practice-react-firebase-3e7f1.appspot.com",
-    messagingSenderId: "1062268790325",
-    appId: "1:1062268790325:web:f0f9c98e1ebe719783b37c"
+    //Configuración de la base de datos de firebase
 };
 
 if(!firebase.apps.length){
