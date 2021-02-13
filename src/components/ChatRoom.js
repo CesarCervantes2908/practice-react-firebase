@@ -19,15 +19,19 @@ if(!firebase.apps.length){
 };
 
 export const ChatRoom = () => {
+    const [fetchDataControl, setFetchDataControl] = useState(true);
+    const changeFetchDataControl = ()=>{
+        setFetchDataControl(prevFetchDataControl=> !prevFetchDataControl);
+    };
     return (
         <div className="card">
             <div className="card-body">
                 <ul>
-                    <MessagesList firebase={firebase}></MessagesList>
+                    <MessagesList firebase={firebase} fetchDataControl={fetchDataControl}></MessagesList>
                 </ul>
             </div>
             <div className="card-footer">
-                <NewMessageControl firebase={firebase}></NewMessageControl>
+                <NewMessageControl firebase={firebase} changeFetchDataControl={changeFetchDataControl}></NewMessageControl>
             </div>
         </div>
     );
